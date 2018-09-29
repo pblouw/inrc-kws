@@ -8,7 +8,7 @@ id_to_char = np.array([x for x in string.ascii_lowercase + "\" -|"])
 
 
 def ce_loss(x, y, weight=1):
-    loss = tf.nn.softmax_cross_entropy_with_logits(logits=x, labels=y)
+    loss = tf.nn.softmax_cross_entropy_with_logits_v2(logits=x, labels=y)
     return weight * tf.reduce_sum(loss)
 
 
@@ -33,12 +33,10 @@ def predict_text(sim, probe, n_steps, p_time=10):
     '''Predict a text transcription from the current simulation state'''
     n_frames = int(n_steps / p_time)
     char_data = sim.data[probe]
-    # print(char_data.shape)
     n_chars = char_data.shape[1]
 
     # reshape to seperate out each window frame that was presented
     char_out = np.reshape(char_data, (n_frames, p_time, n_chars))
-    # print("Out: %s, %s" % (char_out.min(), char_out.max()))
 
     # take most ofter predicted char over each frame presentation interval
     char_ids = np.argmax(char_out, axis=2)
@@ -58,3 +56,4 @@ def create_stream(stream, dt=0.001):
         return stream[ti % len(stream)]
 
     return play_stream
+
