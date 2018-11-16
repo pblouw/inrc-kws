@@ -8,6 +8,7 @@ id_to_char = np.array([x for x in string.ascii_lowercase + "\" -|"])
 
 
 def ce_loss(x, y, weight=1):
+    '''Cross entropy loss function for training keyword spotter'''
     loss = tf.nn.softmax_cross_entropy_with_logits_v2(logits=x, labels=y)
     return weight * tf.reduce_sum(loss)
 
@@ -19,7 +20,7 @@ def weight_init(shape):
 
 
 def merge(chars):
-    """Merge repeated characters and strip blank CTC symbol"""
+    '''Merge repeated characters and strip blank CTC symbol'''
     acc = ["-"]
     for c in chars:
         if c != acc[-1]:
@@ -49,7 +50,7 @@ def predict_text(sim, probe, n_steps, p_time=10):
 
 
 def create_stream(stream, dt=0.001):
-
+    '''Create a streaming function for sending data into Nengo network'''
     def play_stream(t, stream=stream):
 
         ti = int(t / dt)
