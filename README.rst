@@ -13,6 +13,10 @@ To start, you can make an Anaconda environment (or a virtualenv along the same l
     conda create -n abr-tutorial python=3.6
     source activate abr-tutorial
 
+    # install Nengo and Nengo GUI
+    pip install nengo
+    pip install nengo-gui
+
     # install Nengo DL
     pip install nengo-dl
 
