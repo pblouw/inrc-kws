@@ -28,6 +28,7 @@ To start, you can make an Anaconda environment (or a virtualenv along the same l
     pip install jupyter notebook
 
     # open a notebook for the tutorial
+    git clone https://github.com/pblouw/inrc-2018
     cd inrc-2018
     jupyter notebook
 
